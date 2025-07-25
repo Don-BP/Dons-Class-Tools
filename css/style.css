@@ -1,0 +1,360 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2a75bb;
+    --secondary-color: #f4f4f4;
+    --team1-color: #2a75bb; /* Blue */
+    --team2-color: #d9534f; /* Red */
+    --team3-color: #5cb85c; /* Green */
+    --team4-color: #f0ad4e; /* Orange/Yellow */
+    --text-color: #333;
+    --border-radius: 8px;
+}
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 1em;
+    padding: 1em 1em 0 1em;
+    width: 100%;
+    max-width: 1600px;
+}
+header h1 {
+    color: var(--primary-color);
+    margin: 0;
+    font-weight: 700;
+}
+.tool-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2em;
+    width: 100%;
+    max-width: 1600px;
+    padding: 1em;
+}
+.tool-card {
+    position: relative;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.tool-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+.tool-card h2 {
+    margin-top: 0;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.5em;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+}
+
+button, .button-like-label {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    margin: 5px;
+    display: inline-block;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+button:hover, .button-like-label:hover {
+    background-color: #1e5a94;
+}
+button:active, .button-like-label:active {
+    transform: scale(0.97);
+}
+button:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Scoreboard Integration Buttons */
+#mw-goto-scoreboard-btn,
+#fc-goto-scoreboard-btn,
+#wm-goto-scoreboard-btn,
+#ir-goto-scoreboard-btn,
+#jeopardy-goto-scoreboard-btn,
+#bingo-goto-scoreboard-btn {
+    padding: 10px 12px;
+    font-size: 1.2em;
+    line-height: 1;
+    min-width: auto;
+    margin: 5px;
+    background-color: #28a745;
+}
+#mw-goto-scoreboard-btn:hover,
+#fc-goto-scoreboard-btn:hover,
+#wm-goto-scoreboard-btn:hover,
+#ir-goto-scoreboard-btn:hover,
+#jeopardy-goto-scoreboard-btn:hover,
+#bingo-goto-scoreboard-btn:hover {
+    background-color: #218838;
+}
+
+/* Scoreboard Return Button */
+#sb-return-btn {
+    display: none;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 1500;
+    background-color: #f0ad4e;
+    color: white;
+    padding: 10px 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: 1px solid rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+#sb-return-btn:hover {
+    background-color: #eea236;
+}
+.tool-card.fullscreen-mode #sb-return-btn:not([disabled]) {
+    display: block;
+}
+
+/* Fullscreen Mode */
+.fullscreen-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 4px 8px;
+    font-size: 1.2em;
+    line-height: 1;
+    min-width: auto;
+    background-color: rgba(0,0,0,0.05);
+    color: #555;
+    border: 1px solid #ddd;
+    z-index: 10;
+}
+.fullscreen-btn:hover {
+    background-color: rgba(0,0,0,0.15);
+}
+
+.tool-card.fullscreen-mode .fullscreen-btn {
+    padding: 10px 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: rgba(0,0,0,0.1);
+    border: 1px solid #aaa;
+    color: #333;
+    white-space: nowrap;
+}
+
+.tool-card.fullscreen-mode {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    margin: 0;
+    border-radius: 0;
+    overflow: hidden;
+    padding: 0;
+    background-color: var(--secondary-color);
+}
+.tool-card.fullscreen-mode > h2 {
+    display: none;
+}
+
+body.has-fullscreen-tool {
+    overflow: hidden;
+}
+body.has-fullscreen-tool header,
+body.has-fullscreen-tool .tool-container > .tool-card:not(.fullscreen-mode) {
+    display: none;
+}
+
+/* --- THE DEFINITIVE POPUP FIX --- */
+/* DEFAULT STATE: Use `position: fixed` to be relative to the browser window.
+   This works perfectly for the main grid view. */
+.confirm-popup {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2900; /* Lower z-index for the base */
+}
+
+/* FULLSCREEN OVERRIDE: When a popup is moved INSIDE a fullscreen card,
+   this rule activates, switching to `absolute` positioning. This makes it
+   position itself relative to the fullscreen card, solving the visibility issue. */
+.tool-card.fullscreen-mode .confirm-popup {
+    position: absolute;
+}
+
+/* Make sure the file upload modal appears on top of other popups. */
+#file-upload-modal {
+    z-index: 3000;
+}
+
+.confirm-popup-content {
+    background: white;
+    padding: 2em;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    transform: scale(0.7);
+    animation: popup-appear 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+    max-width: 350px;
+}
+@keyframes popup-appear {
+    to { transform: scale(1); }
+}
+.confirm-popup-content h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: var(--primary-color);
+}
+.confirm-popup-content p {
+    margin: 0.5em 0 1.5em 0;
+    color: #555;
+}
+.confirm-popup-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+/* --- NEW: Fullscreen Upload Interstitial Page --- */
+#upload-confirm-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9998; /* Very high z-index to cover everything */
+    background-image: url('../assets/upload-confirm/upload-confirm-bg.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#upload-confirm-page.hidden {
+    display: none;
+}
+#upload-confirm-close-btn {
+    padding: 20px 40px;
+    font-size: 2em;
+    font-weight: bold;
+    border-radius: 15px;
+    background-color: rgba(42, 117, 187, 0.9);
+    border: 3px solid white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    transition: all 0.2s ease;
+}
+#upload-confirm-close-btn:hover {
+    background-color: rgba(30, 90, 148, 0.95);
+    transform: scale(1.05);
+}
+#upload-confirm-close-btn:active {
+    transform: scale(1.02);
+}
+
+
+/* Icon Menu & Favorite System */
+#icon-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+#icon-menu button {
+    font-size: 1.5em;
+    background: none;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    color: #888;
+    transition: all 0.2s;
+}
+
+#icon-menu button:hover {
+    color: var(--primary-color);
+    background-color: #eef5ff;
+    border-color: var(--primary-color);
+}
+
+#favorite-filter-btn.active {
+    color: #e91e63;
+    border-color: #e91e63;
+    background-color: #fce4ec;
+}
+
+.favorite-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 1.5em;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    cursor: pointer;
+    color: #ccc;
+    z-index: 10;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.favorite-btn:hover {
+    background: none;
+    transform: scale(1.2);
+}
+
+.favorite-btn.is-favorite {
+    color: #e91e63;
+}
+
+body.favorites-active .tool-card:not(.favorited) {
+    display: none !important;
+}
+#mute-btn {
+    position: static;
+}
+#mute-btn:hover {
+    background: none;
+}
+.hidden {
+    display: none !important;
+}

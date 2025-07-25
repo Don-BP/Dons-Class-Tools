@@ -1,0 +1,245 @@
+/* --- Date & Weather --- */
+.dw-main-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1.5em;
+}
+.dw-left-panel, .dw-right-panel {
+    width: 100%;
+}
+.dw-calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+#dw-calendar-header {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 1.2em;
+}
+#dw-prev-month-btn, #dw-next-month-btn {
+    padding: 4px 12px;
+}
+#dw-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+}
+.dw-day-name, .dw-date-cell {
+    padding: 8px 0;
+    font-weight: bold;
+    border-radius: 4px;
+}
+.dw-day-name {
+    color: #666;
+    font-size: 0.9em;
+}
+.dw-date-cell {
+    background-color: var(--secondary-color);
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s, color 0.2s, border-color 0.2s;
+}
+.dw-date-cell:not(.empty):hover {
+    background-color: #d4e3f3;
+}
+.dw-date-cell.empty {
+    background-color: transparent;
+    cursor: default;
+}
+.dw-date-cell.current-day {
+    background-color: var(--team4-color);
+    color: white;
+    border-color: transparent;
+}
+.dw-date-cell.selected-day {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px var(--primary-color);
+    transform: scale(1.05);
+    border-color: transparent;
+}
+.dw-right-panel {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#date-weather-tool:not(.fullscreen-mode) #dw-month-display,
+#date-weather-tool:not(.fullscreen-mode) .dw-day-date-row {
+    display: none;
+}
+#dw-month-display {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+.dw-day-date-row {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 1em;
+    margin: 0.5em 0;
+}
+#dw-day-display {
+    font-size: 2em;
+    color: #555;
+}
+#dw-date-display {
+    font-size: 3.5em;
+    font-weight: bold;
+    color: var(--team2-color);
+}
+#dw-date-display sup {
+    font-size: 0.5em;
+    vertical-align: super;
+}
+#dw-time-display {
+    font-size: 1.5em;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: white;
+    color: var(--primary-color);
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: 2px solid var(--primary-color);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    display: inline-block;
+}
+.dw-time-weather-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    width: 100%;
+    margin-top: 1em;
+}
+#dw-weather-display {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+    justify-items: center;
+    gap: 0.5em 1em;
+}
+.dw-weather-controls {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    margin-bottom: 0;
+}
+#dw-weather-text {
+    grid-column: 1 / 2;
+    grid-row: 2 / 2;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+#dw-weather-img {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+.dw-weather-controls select {
+    padding: 5px;
+    border-radius: 5px;
+}
+.dw-weather-visuals {
+    display: contents;
+}
+
+.tool-card.fullscreen-mode#date-weather-tool {
+    padding: 0;
+}
+.tool-card.fullscreen-mode#date-weather-tool .dw-main-content {
+    flex-direction: row;
+    height: 100%;
+    padding: 2em;
+    align-items: stretch;
+}
+.tool-card.fullscreen-mode#date-weather-tool .dw-left-panel {
+    flex: 1 1 45%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+.tool-card.fullscreen-mode#date-weather-tool #dw-calendar-grid {
+    flex-grow: 1;
+}
+.tool-card.fullscreen-mode#date-weather-tool .dw-date-cell {
+    background-color: white;
+    border: 1px solid var(--secondary-color);
+}
+.tool-card.fullscreen-mode#date-weather-tool .dw-date-cell:not(.empty):not(.current-day):not(.selected-day):hover {
+    background-color: #eef5ff;
+}
+.tool-card.fullscreen-mode#date-weather-tool .dw-date-cell.current-day {
+    background-color: var(--team4-color);
+    color: white;
+    border-color: transparent;
+}
+.tool-card.fullscreen-mode#date-weather-tool .dw-date-cell.selected-day {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px var(--primary-color);
+    border-color: transparent;
+}
+.tool-card.fullscreen-mode#date-weather-tool .dw-right-panel {
+    flex: 1 1 55%;
+    justify-content: center;
+    height: 100%;
+}
+.tool-card.fullscreen-mode #dw-month-display {
+    font-size: 7em;
+}
+.tool-card.fullscreen-mode #dw-day-display {
+    font-size: 6em;
+}
+.tool-card.fullscreen-mode #dw-date-display {
+    font-size: 8em;
+}
+.tool-card.fullscreen-mode #dw-time-display {
+    font-size: 4em;
+    padding: 10px 25px;
+}
+.tool-card.fullscreen-mode #dw-weather-img {
+    width: 250px;
+    height: 250px;
+}
+.tool-card.fullscreen-mode #dw-weather-text {
+    font-size: 3em;
+}
+
+@media (max-width: 768px) {
+    .tool-card.fullscreen-mode#date-weather-tool .dw-main-content {
+        flex-direction: column;
+        padding: 1em;
+        overflow-y: auto;
+        gap: 1.5em;
+    }
+    .tool-card.fullscreen-mode#date-weather-tool .dw-left-panel,
+    .tool-card.fullscreen-mode#date-weather-tool .dw-right-panel {
+        flex: none;
+        width: 100%;
+        max-width: none;
+        height: auto;
+    }
+    .tool-card.fullscreen-mode#date-weather-tool .dw-time-weather-row {
+        flex-direction: column;
+        gap: 1.5em;
+    }
+    .tool-card.fullscreen-mode#date-weather-tool #dw-weather-display {
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+    }
+    .tool-card.fullscreen-mode #dw-month-display { font-size: 3.5em; }
+    .tool-card.fullscreen-mode #dw-day-display { font-size: 3em; }
+    .tool-card.fullscreen-mode #dw-date-display { font-size: 5em; }
+    .tool-card.fullscreen-mode #dw-time-display { font-size: 2.5em; }
+    .tool-card.fullscreen-mode #dw-weather-img { width: 100px; height: 100px; }
+    .tool-card.fullscreen-mode #dw-weather-text { font-size: 1.5em; }
+}

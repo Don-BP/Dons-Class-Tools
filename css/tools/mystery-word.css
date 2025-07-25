@@ -1,0 +1,291 @@
+/* --- Mystery Word (Hangman) Game --- */
+.mw-container {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+#mw-setup-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5em;
+    padding: 2em;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+}
+.mw-input-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+}
+#mw-word-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 1.2em;
+}
+#mw-word-input[type="password"] {
+    -webkit-text-security: disc;
+    font-family: 'Poppins', sans-serif;
+}
+#mw-toggle-word-btn {
+    padding: 10px;
+    border-radius: 0 5px 5px 0;
+    margin: 0;
+    background-color: #777;
+}
+.mw-options-wrapper {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.mw-option-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+.mw-option-group select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+#mw-start-game-btn {
+    font-size: 1.2em;
+    padding: 12px 30px;
+    background-color: #5cb85c;
+}
+#mw-start-game-btn:hover {
+    background-color: #4a9d4a;
+}
+#mw-game-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+#mw-visual-area {
+    width: 100%;
+    flex: 1 1 200px;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e9ecef;
+    border-radius: var(--border-radius);
+    padding: 10px;
+}
+#mw-visual-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+#mw-game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+#mw-tries-display {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+#mw-word-display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 25px; 
+    min-height: 50px;
+}
+.mw-word-wrapper {
+    display: flex;
+    gap: 10px;
+}
+.mw-letter, .mw-blank {
+    min-width: 30px;
+    height: 45px;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--primary-color);
+    border-bottom: 4px solid var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#mw-keyboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 5px;
+    width: 100%;
+    max-width: 600px;
+}
+.mw-key {
+    padding: 0;
+    min-width: 0;
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    aspect-ratio: 1 / 1;
+    transition: background-color 0.2s, color 0.2s, opacity 0.2s, transform 0.1s;
+}
+.mw-key:not(:disabled):hover {
+    background-color: #1e5a94;
+    transform: translateY(-2px);
+}
+.mw-key:disabled {
+    cursor: default;
+    opacity: 0.3;
+}
+.mw-key.correct {
+    background-color: #5cb85c;
+}
+.mw-key.incorrect {
+    background-color: #d9534f;
+}
+#mw-game-actions {
+    margin-top: 1em;
+    display: flex;
+    gap: 1em;
+}
+#mw-end-game-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2500;
+}
+.mw-end-game-content {
+    position: relative;
+    background-color: white;
+    padding: 2em 3em;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    animation: popup-appear 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.mw-end-game-content h3 {
+    margin-top: 0;
+    font-size: 2.5em;
+}
+p#mw-revealed-word {
+    font-size: 2.2em;
+    color: var(--team2-color);
+    margin: 0.5em 0 1em 0;
+    font-weight: bold;
+    word-break: break-word;
+}
+.mw-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5em;
+    font-weight: bold;
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0;
+    line-height: 1;
+}
+.mw-popup-close:hover {
+    color: var(--primary-color);
+    background: none;
+}
+#mw-confetti-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2600;
+}
+
+.tool-card.fullscreen-mode #mw-game-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+    padding: 2em;
+    gap: 2em;
+    background-color: var(--secondary-color);
+}
+.tool-card.fullscreen-mode #mw-visual-area {
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.tool-card.fullscreen-mode #mw-game-area {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    padding: 1.5em;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.tool-card.fullscreen-mode #mw-tries-display {
+    font-size: 1.5em;
+}
+.tool-card.fullscreen-mode #mw-word-display {
+    gap: 15px 30px;
+    min-height: 80px;
+}
+.tool-card.fullscreen-mode .mw-letter, .tool-card.fullscreen-mode .mw-blank {
+    min-width: 45px;
+    height: 65px;
+    font-size: 3.5em;
+}
+
+@media (max-width: 480px) {
+    .mw-input-wrapper {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+    #mw-word-input {
+        border-right: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    #mw-toggle-word-btn {
+        border-radius: 5px;
+    }
+}
+@media (max-width: 768px) and (min-height: 500px) {
+    .tool-card.fullscreen-mode #mw-game-container {
+        display: flex;
+        flex-direction: column;
+        padding: 1em;
+        gap: 1em;
+    }
+    .tool-card.fullscreen-mode #mw-visual-area {
+        flex-grow: 1;
+        flex-shrink: 1;
+        min-height: 100px;
+    }
+    .tool-card.fullscreen-mode #mw-game-area {
+        flex-grow: 0;
+        flex-shrink: 0; 
+    }
+    .tool-card.fullscreen-mode #mw-word-display {
+        padding: 0.5em 0;
+    }
+    .tool-card.fullscreen-mode .mw-word-wrapper {
+        gap: 5px;
+    }
+    .tool-card.fullscreen-mode .mw-letter, .tool-card.fullscreen-mode .mw-blank {
+        font-size: 1.8em;
+        min-width: 25px;
+        height: 40px;
+        border-bottom-width: 3px;
+    }
+    .tool-card.fullscreen-mode #mw-word-display {
+        gap: 5px 15px;
+    }
+}

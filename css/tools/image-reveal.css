@@ -1,0 +1,85 @@
+/* --- Image Reveal Game --- */
+.ir-setup-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 1em;
+    width: 100%;
+}
+.ir-option, .ir-custom-grid-inputs, .ir-custom-speed-input {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.ir-setup-controls select, .ir-setup-controls input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.ir-custom-grid-inputs input, .ir-custom-speed-input input {
+    width: 70px;
+}
+.ir-game-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1em;
+}
+.ir-game-area {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+#ir-image-container {
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    margin-bottom: 1em;
+}
+#ir-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    visibility: hidden;
+}
+#ir-grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+}
+.ir-grid-tile {
+    background-color: var(--primary-color);
+    border: 1px solid white;
+    transition: opacity 0.4s ease-in-out;
+}
+.ir-grid-tile.revealed {
+    opacity: 0;
+    pointer-events: none;
+}
+#ir-status-bar {
+    color: #555;
+    font-weight: bold;
+    min-height: 1.2em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#ir-sequence-status {
+    color: var(--primary-color);
+}
+.tool-card.fullscreen-mode .ir-game-area {
+    justify-content: center;
+}

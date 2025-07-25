@@ -1,0 +1,380 @@
+/* --- Scoreboard Styles --- */
+/* All of these are specific to the non-fullscreen "grid view" of the scoreboard. */
+.scoreboard-grid-view .scoreboard-teams {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 1em;
+    text-align: center;
+    gap: 1em;
+}
+.scoreboard-grid-view .team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+}
+.scoreboard-grid-view .team h3 {
+    margin: 0;
+    font-size: 1.1em;
+}
+.scoreboard-grid-view .team-avatar-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0.5em;
+}
+.scoreboard-grid-view .team-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--secondary-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background-color: #e0e0e0;
+}
+.scoreboard-grid-view .avatar-upload-label {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 28px;
+    height: 28px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    font-size: 0.9em;
+    transition: transform 0.2s;
+}
+.scoreboard-grid-view .avatar-upload-label:hover {
+    transform: scale(1.1);
+}
+.avatar-upload-input {
+    display: none;
+}
+.scoreboard-grid-view .team-score {
+    font-size: 3em;
+    font-weight: bold;
+    margin: 0;
+}
+.scoreboard-grid-view .scoreboard-teams .team:nth-child(1) .team-score { color: var(--team1-color); }
+.scoreboard-grid-view .scoreboard-teams .team:nth-child(2) .team-score { color: var(--team2-color); }
+.scoreboard-grid-view .scoreboard-teams .team:nth-child(3) .team-score { color: var(--team3-color); }
+.scoreboard-grid-view .scoreboard-teams .team:nth-child(4) .team-score { color: var(--team4-color); }
+
+.scoreboard-grid-view .score-controls button {
+    width: 45px;
+    height: 45px;
+    font-size: 1.5em;
+    line-height: 1;
+    padding: 0;
+}
+
+/* Specific to the fullscreen container for the themed scoreboard. */
+#themed-scoreboard-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.scoreboard-fullscreen-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.05);
+    border-bottom: 2px solid var(--secondary-color);
+    flex-shrink: 0;
+}
+/* All `sb-` prefixed classes are scoreboard-specific. */
+.sb-control-group:nth-of-type(1) { order: 1; } /* Teams */
+.sb-control-group:nth-of-type(2) { order: 2; } /* Theme */
+.sb-control-group:nth-of-type(3) { order: 4; } /* Win Score */
+.sb-control-group:nth-of-type(4) { order: 3; } /* Points */
+.sb-control-group:nth-of-type(5) { order: 5; } /* Reset */
+
+.sb-control-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+.sb-control-group label {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+.sb-control-group select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+/* All IDs with `sb-` are scoreboard-specific. */
+#sb-team-count-display {
+    font-weight: bold;
+    font-size: 1.2em;
+    min-width: 2ch;
+    text-align: center;
+}
+#sb-win-score-input {
+    width: 70px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+#sb-bonus-input {
+    width: 60px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+#themed-teams-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1.5em;
+    padding: 1.5em;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+/* All styles nested under #themed-teams-container are correctly scoped here. */
+#themed-teams-container .team {
+    border: 2px solid #ccc;
+    border-radius: var(--border-radius);
+    padding: 1em;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+#themed-teams-container .team .team-avatar-container {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    width: 60px;
+    height: 60px;
+    z-index: 20;
+}
+#themed-teams-container .team .team-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255,255,255,0.7);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background-color: #e0e0e0;
+}
+#themed-teams-container .team .avatar-upload-label {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    font-size: 0.8em;
+    transition: transform 0.2s;
+    color: #333;
+}
+#themed-teams-container .team .avatar-upload-label:hover {
+    transform: scale(1.1);
+}
+#themed-teams-container .team .name-text {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+#themed-teams-container .team .name-text:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+#themed-teams-container .team .name-text:focus {
+    background-color: rgba(0,0,0,0.1);
+    outline: 2px solid var(--team-color);
+}
+#themed-teams-container .team .team-name-display { padding: 0.5em; border-radius: 5px; margin-bottom: 0.5em; }
+#themed-teams-container .team .name-text { font-size: 1.5em; font-weight: bold; color: var(--primary-color); }
+#themed-teams-container .team .score-display {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 280px;
+    position: relative;
+    width: 100%;
+}
+#themed-teams-container .team .score-number {
+    font-size: 5em;
+    font-weight: bold;
+    color: var(--team-color);
+    z-index: 10;
+    position: relative;
+}
+#themed-teams-container .team .team-controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1em;
+    width: 100%;
+    flex-shrink: 0;
+    z-index: 10;
+}
+#themed-teams-container .team .point-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 2.5em;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    transition: transform 0.2s ease, background-color 0.2s;
+}
+#themed-teams-container .team .point-btn:active {
+    transform: scale(0.9);
+}
+#themed-teams-container .team .point-btn:hover { 
+    background-color: #1e5a94; 
+}
+
+
+/* This rule defines how a scoreboard-specific element behaves in the global fullscreen state. It belongs here. */
+.tool-card.fullscreen-mode .scoreboard-grid-view { display: none; }
+.tool-card.fullscreen-mode #themed-scoreboard-container { display: flex; }
+
+/* The winner popup is specific to the scoreboard (and other games), but its unique layout and content styles belong here. */
+#winner-popup {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+.winner-popup-content {
+    position: relative;
+    background: white;
+    padding: 3em 4em;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transform: scale(0.5);
+    /* It uses the global 'popup-appear' animation we moved to style.css */
+    animation: popup-appear 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+.winner-popup-close {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 1.5em;
+    font-weight: bold;
+    background: none; border: none;
+    color: #888;
+    cursor: pointer;
+}
+#winner-team-name {
+    font-size: 3em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 0;
+}
+.winner-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid gold;
+    margin-bottom: 1em;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    background-color: #f0f0f0;
+}
+.winner-avatar[src=""] {
+    display: none;
+}
+#confetti-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 3001;
+}
+
+/* These are overrides for the scoreboard's specific confirm popup instance. The base .confirm-popup styles are global. */
+#sb-confirm-popup #sb-confirm-reset-btn { background-color: #d9534f; }
+#sb-confirm-popup #sb-confirm-reset-btn:hover { background-color: #c9302c; }
+#sb-confirm-popup #sb-cancel-reset-btn { background-color: #aaa; }
+#sb-confirm-popup #sb-cancel-reset-btn:hover { background-color: #888; }
+
+
+/* Responsive overrides are also specific to the scoreboard elements. */
+@media (max-width: 768px) {
+    .tool-card.fullscreen-mode #themed-teams-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-content: start;
+        gap: 0.75em;
+        padding: 0.75em;
+    }
+    .tool-card.fullscreen-mode #themed-teams-container .team {
+        width: 100%;
+        min-height: 0;
+        padding: 0.5em;
+    }
+    .tool-card.fullscreen-mode #themed-teams-container .team .team-avatar-container {
+        width: 40px;
+        height: 40px;
+        top: 0.5em;
+        left: 0.5em;
+    }
+    .tool-card.fullscreen-mode #themed-teams-container .team .avatar-upload-label {
+        width: 18px;
+        height: 18px;
+        font-size: 0.7em;
+    }
+    .tool-card.fullscreen-mode #themed-teams-container .team .team-name-display {
+        margin-bottom: 0.1em;
+        padding: 0;
+    }
+    .tool-card.fullscreen-mode #themed-teams-container .team .name-text {
+        font-size: 1em;
+        padding: 2px;
+        font-weight: 600;
+    }
+    .tool-card.fullscreen-mode #themed-teams-container .team .score-display {
+        min-height: 120px;
+        justify-content: flex-start;
+        padding-top: 0.1em;
+    }
+    .tool-card.fullscreen-mode #themed-teams-container .team .score-number {
+        font-size: 2.5em;
+    }
+    .tool-card.fullscreen-mode #themed-teams-container .team .team-controls {
+        padding-top: 0.5em;
+    }
+    .tool-card.fullscreen-mode #themed-teams-container .team .point-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 2em;
+    }
+}

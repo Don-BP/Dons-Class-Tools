@@ -1,0 +1,73 @@
+/* --- 3D Dice Roller --- */
+#dice-roller-tool {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+.dice-roller-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 1em;
+    flex-shrink: 0;
+}
+.dr-control-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+.dr-control-group label {
+    font-weight: bold;
+}
+.dr-control-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#dice-canvas-container {
+    width: 100%;
+    flex-grow: 1;
+    min-height: 250px;
+    position: relative;
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+#dice-canvas-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+#dice-result-popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+.dice-result-content {
+    background-color: white;
+    padding: 2em 3em;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: popup-appear 0.3s ease-out forwards;
+}
+.dice-result-content h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+#dice-result-total {
+    font-size: 4em;
+    font-weight: bold;
+    color: var(--team2-color);
+    margin: 0.2em 0;
+}

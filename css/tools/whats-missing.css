@@ -1,0 +1,65 @@
+/* --- What's Missing? Game --- */
+#whats-missing-status {
+    font-weight: bold;
+    min-height: 24px;
+    color: #d9534f;
+}
+.whats-missing-grid {
+    display: grid;
+    gap: 10px;
+    width: 100%;
+    min-height: 200px;
+    margin: 1em 0;
+    cursor: pointer;
+    grid-auto-rows: 1fr; /* Ensure all rows are of equal height */
+}
+.tool-card.fullscreen-mode .whats-missing-grid {
+    flex-grow: 1; /* Allow grid to expand vertically */
+}
+.whats-missing-card {
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    font-size: 1.2em;
+    text-align: center;
+    background-color: white;
+    transition: opacity 0.5s, background-color 0.5s, transform 0.5s;
+    overflow: hidden; /* Prevent content from spilling out */
+}
+.whats-missing-card img {
+    max-width: 100%;
+    max-height: 80%;
+    object-fit: contain;
+    min-height: 0;
+}
+.whats-missing-card span {
+    font-size: 1em;
+}
+.wm-settings {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1em; /* Add space below the controls */
+}
+.whats-missing-card.wm-invisible {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95); 
+}
+.whats-missing-card.revealed {
+    background-color: #f0ad4e;
+    color: white;
+}
+#wm-goto-scoreboard-btn {
+    display: none; /* Hide by default in grid view */
+}
+.tool-card.fullscreen-mode #wm-goto-scoreboard-btn {
+    display: inline-block;
+}

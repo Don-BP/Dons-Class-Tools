@@ -1,0 +1,236 @@
+/* --- Phonics Practice Module --- */
+.phonics-grid-view {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+#phonics-display-panel_grid {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+.phonics-card_grid {
+    background-color: #fff;
+    border: 2px dashed var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 1em;
+    text-align: center;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 0;
+}
+#phonics-card-word_grid {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 0 0 0.2em 0;
+}
+#phonics-card-word_grid strong {
+    color: #d9534f;
+}
+#phonics-card-image_grid {
+    max-width: 100%;
+    max-height: 100%;
+    min-height: 0;
+    object-fit: contain;
+}
+.phonics-nav_grid {
+    display: flex;
+    gap: 0.5em;
+    flex-shrink: 0;
+}
+.phonics-nav_grid button {
+    font-size: 1.2em;
+    padding: 5px 10px;
+}
+#phonics-sound-btn_grid {
+    font-size: 1.5em;
+    background-color: #f0ad4e;
+}
+#phonics-sound-btn_grid:hover {
+    background-color: #eea236;
+}
+#phonics-card-counter_grid {
+    font-size: 0.9em;
+    color: #666;
+    font-weight: bold;
+    min-height: 1.2em;
+}
+
+/* Fullscreen Transition Logic */
+.tool-card.fullscreen-mode .phonics-grid-view {
+    display: none;
+}
+.phonics-fullscreen-view {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: var(--secondary-color);
+}
+#phonics-controls-panel {
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    padding: 1.5em 1em;
+    overflow-y: auto;
+    border-right: 2px solid #ddd;
+    flex-shrink: 0;
+}
+.phonics-category-group {
+    margin-bottom: 1em;
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius);
+}
+.phonics-category-group summary {
+    font-weight: bold;
+    color: var(--primary-color);
+    padding: 10px;
+    cursor: pointer;
+    list-style: none;
+}
+.phonics-category-group summary::-webkit-details-marker { display: none; }
+.phonics-category-group[open] > summary {
+    border-bottom: 1px solid #e0e0e0;
+}
+.phonics-subgroup-list {
+    padding: 10px;
+}
+.phonics-checkbox-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.phonics-checkbox-item input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+.phonics-checkbox-item label {
+    font-size: 1em;
+    cursor: pointer;
+}
+.phonics-main-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2em;
+    gap: 2em;
+}
+.phonics-load-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em 1.5em;
+    flex-shrink: 0;
+    width: 100%;
+}
+.phonics-top-nav {
+    display: flex;
+    gap: 0.5em;
+}
+#phonics-load-btn, .phonics-top-nav button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+}
+#phonics-sound-btn {
+    font-size: 1.5em;
+    padding: 8px 15px;
+    background-color: #f0ad4e;
+}
+#phonics-sound-btn:hover {
+    background-color: #eea236;
+}
+.phonics-cumulative-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.phonics-cumulative-option label {
+    cursor: help;
+    font-weight: 500;
+    color: #444;
+}
+#phonics-display-panel {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    min-height: 0;
+}
+.phonics-card {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 2em;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 0;
+}
+#phonics-card-word {
+    font-size: 5em;
+    font-weight: bold;
+    margin: 0 0 0.3em 0;
+}
+#phonics-card-word strong {
+    color: #d9534f;
+}
+#phonics-card-image {
+    max-width: 100%;
+    max-height: 50vh;
+    height: 300px;
+    object-fit: contain;
+    margin-bottom: 1em;
+}
+#phonics-card-sentence {
+    font-size: 1.5em;
+    color: #555;
+    margin-top: 1em;
+    font-style: italic;
+}
+.phonics-bottom-bar {
+    display: none;
+}
+#phonics-card-counter {
+    font-size: 1.1em;
+    color: #666;
+    font-weight: bold;
+    min-width: 120px; 
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .phonics-fullscreen-view {
+        flex-direction: column;
+    }
+    #phonics-controls-panel {
+        width: 100%;
+        height: auto;
+        max-height: 40vh;
+        border-right: none;
+        border-bottom: 2px solid #ddd;
+    }
+    #phonics-card-word { font-size: 3em; }
+    #phonics-card-image { height: 150px; }
+    #phonics-card-sentence { font-size: 1.2em; }
+    #phonics-load-btn, .phonics-top-nav button { font-size: 1em; }
+}

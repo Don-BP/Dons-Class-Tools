@@ -1,0 +1,172 @@
+/* --- Digital Flashcards --- */
+#flashcard-display-container {
+    width: 90%;
+    flex-grow: 1; 
+    min-height: 200px;
+    margin: 1em 0;
+    position: relative; 
+    display: flex;
+}
+#flashcard-display {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.flashcard-face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed var(--primary-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.flashcard-face.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 2;
+}
+.tool-card.fullscreen-mode #flashcard-display-container {
+    height: auto; 
+    flex-grow: 1;
+    font-size: 1.5em;
+}
+#flashcard-display img {
+    max-width: 100%;
+    max-height: 80%;
+    object-fit: contain;
+    min-height: 0;
+}
+
+.flashcard-top-bar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1em;
+}
+.flashcard-nav {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+.flashcard-nav-single, .flashcard-nav-toggle {
+    display: flex;
+    gap: 10px;
+}
+#flashcard-show-all-toggle {
+    background-color: #5cb85c;
+}
+#flashcard-show-all-toggle:hover {
+    background-color: #4a9d4a;
+}
+.flashcard-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#flashcard-category {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Grid View & Flip Animation Styles */
+#flashcard-grid-view {
+    width: 90%;
+    flex-grow: 1;
+    min-height: 200px;
+    margin: 1em 0;
+    display: grid;
+    gap: 10px;
+}
+.tool-card.grid-view-active #flashcard-display-container {
+    display: none;
+}
+.tool-card.grid-view-active .flashcard-nav-single {
+    display: none;
+}
+.tool-card:not(.grid-view-active) #flashcard-grid-view {
+    display: none;
+}
+.tool-card.fullscreen-mode #flashcard-grid-view {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    margin: 0;
+}
+
+/* 3D Flip Card Styles */
+.flashcard-grid-item {
+    background-color: transparent;
+    perspective: 1000px;
+    cursor: pointer;
+}
+.fgi-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+.flashcard-grid-item.is-flipped .fgi-inner {
+    transform: rotateY(180deg);
+}
+.fgi-front, .fgi-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+.fgi-front {
+    border: 2px solid var(--primary-color);
+    background-color: white;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.fgi-front img {
+    max-width: 100%;
+    max-height: 75%;
+    object-fit: contain;
+    margin-bottom: 5px;
+    min-height: 0;
+}
+.fgi-front div {
+    font-weight: bold;
+    word-break: break-word;
+}
+.fgi-back {
+    background-color: var(--primary-color);
+    transform: rotateY(180deg);
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #fff;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 600px) {
+    .flashcard-top-bar {
+        justify-content: center;
+    }
+    .flashcard-nav {
+        justify-content: center;
+    }
+}

@@ -1,0 +1,92 @@
+/* --- Classroom Noise Meter --- */
+#noise-meter-tool.is-active h2 {
+    color: #5cb85c;
+}
+.nm-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+    margin-bottom: 1em;
+    width: 100%;
+}
+.nm-control-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+.nm-control-group label {
+    font-weight: bold;
+}
+.nm-control-group select,
+.nm-control-group input[type="range"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+#nm-sensitivity-value {
+    font-weight: bold;
+    min-width: 2.5em;
+    text-align: left;
+}
+#nm-visual-container {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 4 / 3;
+    margin-bottom: 1em;
+    position: relative;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+.nm-theme {
+    display: none;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.nm-theme.active {
+    display: flex;
+}
+.nm-theme img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: transform 0.2s ease-in-out;
+}
+#nm-volume-meter-container {
+    width: 100%;
+    height: 30px;
+    background-color: #e9e9e9;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 0.5em;
+}
+#nm-volume-meter-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #5cb85c;
+    border-radius: 15px;
+    transition: width 0.1s linear, background-color 0.3s ease;
+}
+#nm-status {
+    font-weight: bold;
+    color: #555;
+    min-height: 1.2em;
+    text-align: center;
+}
+.tool-card.fullscreen-mode#noise-meter-tool {
+    justify-content: center;
+}
+.tool-card.fullscreen-mode #nm-visual-container {
+    max-width: 80vh;
+    flex-grow: 1;
+    height: auto;
+}
+.tool-card.fullscreen-mode #nm-volume-meter-container {
+    height: 50px;
+    max-width: 80%;
+}

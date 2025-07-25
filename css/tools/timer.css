@@ -1,0 +1,470 @@
+/* --- Classroom Timer --- */
+.tool-card:has(> .timer-layout-container) {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+.tool-card:has(> .timer-layout-container) h2 {
+    margin-bottom: 0.5em;
+    padding-bottom: 0.25em;
+}
+.timer-layout-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+.timer-controls-panel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px 15px; /* row-gap column-gap */
+    width: 100%;
+    max-width: 380px;
+}
+#timer-display {
+    font-size: 4em;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    margin: 0 0 0.2em 0;
+    font-variant-numeric: tabular-nums;
+}
+.preset-timers {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+}
+.custom-timer-setter {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+#timer-custom-input {
+    width: 65px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+    font-size: 1em;
+}
+#timer-set-custom-btn {
+    padding: 8px 15px;
+    margin: 0;
+}
+.timer-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+.timer-theme-selector {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.timer-theme-selector select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+}
+.timer-controls button, .preset-timers button {
+    min-width: 60px;
+    padding: 10px 15px;
+}
+
+/* Fullscreen Layouts */
+.tool-card.fullscreen-mode .timer-controls-panel {
+    width: auto;
+    max-width: none;
+}
+.tool-card.fullscreen-mode .preset-timers {
+    flex-wrap: wrap;
+}
+.tool-card.fullscreen-mode #timer-display {
+    font-size: 8em;
+    margin: 0.5em 0;
+}
+.tool-card.fullscreen-mode .timer-layout-container.side-by-side-theme-active {
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch; /* This is the key change */
+    gap: 2em;
+}
+.tool-card.fullscreen-mode .side-by-side-theme-active .timer-controls-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* This vertically centers the controls */
+    gap: 20px;               /* This creates equal spacing between them */
+    flex-shrink: 0;          /* This prevents the panel from resizing */
+    width: 420px;            /* This locks the width */
+}
+.tool-card.fullscreen-mode .side-by-side-theme-active #timer-display {
+    margin: 0;
+}
+/* Override the default fullscreen margin to make controls compact */
+.tool-card.fullscreen-mode .side-by-side-theme-active #timer-display {
+    margin: 0;
+}
+/* Add some vertical padding to the middle row of buttons so it doesn't look crushed */
+.tool-card.fullscreen-mode .side-by-side-theme-active .preset-timers {
+    padding: 15px 0;
+    flex-grow: 0; /* This is the fix. It stops the element from expanding vertically. */
+}
+.tool-card.fullscreen-mode .side-by-side-theme-active .timer-visual-container {
+    flex-grow: 1;
+    /* Removed fixed height to allow it to stretch */
+}
+
+.tool-card.fullscreen-mode .timer-layout-container.is-shark-theme {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 1fr 1fr;
+  height: 100%;
+  width: 100%;
+}
+.tool-card.fullscreen-mode .is-shark-theme .timer-controls-panel {
+  grid-row: 1;
+  grid-column: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color);
+  padding: 1em;
+  gap: 2vh;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+.tool-card.fullscreen-mode .is-shark-theme .timer-controls-panel > * {
+    flex-shrink: 0;
+}
+.tool-card.fullscreen-mode .is-shark-theme #timer-display {
+    margin: 0;
+    flex-shrink: 1;
+    min-height: 0;
+    font-size: clamp(4em, 15vh, 8em);
+}
+.tool-card.fullscreen-mode .is-shark-theme .preset-timers,
+.tool-card.fullscreen-mode .is-shark-theme .custom-timer-setter,
+.tool-card.fullscreen-mode .is-shark-theme .timer-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0;
+}
+.tool-card.fullscreen-mode .is-shark-theme .timer-visual-container {
+  grid-row: 2;
+  grid-column: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* Visuals */
+.timer-visual-container {
+    width: 100%;
+    margin-top: 0.5em;
+    min-height: 200px;
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-radius);
+    background-color: var(--secondary-color);
+}
+.timer-theme {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.timer-theme.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Bar Theme */
+#timer-theme-bar.active { align-items: flex-start; padding-top: 1em; }
+#timer-progress-bar {
+    width: 100%; height: 20px;
+    background-color: #e9e9e9;
+    border-radius: 10px; overflow: hidden;
+}
+#timer-progress {
+    width: 100%; height: 100%;
+    background-color: #5cb85c;
+    transition: width 0.5s linear;
+}
+
+/* Water Bucket Theme */
+.bucket-container {
+    width: 120px; height: 160px;
+    margin: 0 auto;
+    border: 5px solid #8B4513; border-top: none;
+    border-radius: 0 0 20px 20px;
+    position: relative; background-color: #f0e6d2;
+    overflow: hidden;
+}
+.tool-card.fullscreen-mode .bucket-container { width: 250px; height: 350px; }
+.water {
+    position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 0 0 15px 15px;
+    transition: height 0.5s linear;
+}
+
+/* Growing Flower Theme */
+#timer-theme-flower.active {
+    background-color: #aae0ff;
+}
+.flower-scene {
+    width: 100%; 
+    height: 100%;
+    background: transparent;
+    position: relative; 
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-end;
+    transform: scale(var(--flower-scene-scale, 1.0));
+    transform-origin: bottom center;
+    transition: transform 0.3s ease-out;
+}
+.flower-pot {
+    width: 120px; height: 100px;
+    position: absolute; bottom: 10px;
+    z-index: 2;
+}
+#flower-stem {
+    width: 20px;
+    height: 0; background: #5cb85c;
+    position: absolute; bottom: 110px; 
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px 10px 0 0;
+    transition: height 1s linear;
+    z-index: 1;
+}
+.leaf {
+    width: 120px; height: 84px;
+    position: absolute; opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.8s, transform 0.8s;
+}
+.leaf1 { bottom: 30%; left: -105px; transform-origin: bottom right; }
+.leaf2 { bottom: 50%; right: -105px; transform-origin: bottom left; }
+#flower-head {
+    width: 250px; height: 250px;
+    position: absolute;
+    bottom: 100%; 
+    left: 50%;
+    transform: translate(-50%, 50%) scale(0);
+    transform-origin: center center;
+    z-index: 3;
+    transition: transform 1.5s ease-out, opacity 1.5s ease-out;
+    opacity: 0;
+}
+.flower-center {
+    width: 45px; height: 45px;
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+.petal {
+    width: 112px; height: 112px;
+    position: absolute; top: 50%; left: 50%;
+    transform-origin: center center;
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-65px) scale(0);
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease-in-out;
+}
+.p1 { --angle: 0deg; } .p2 { --angle: 60deg; } .p3 { --angle: 120deg; }
+.p4 { --angle: 180deg; } .p5 { --angle: 240deg; } .p6 { --angle: 300deg; }
+
+/* Marble Jar Theme */
+.marbles-scene {
+    width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    background-color: #e0f7fa;
+    position: relative;
+}
+#marbles-container {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+}
+.marbles-jar-overlay {
+    width: 90%; height: 90%;
+    max-width: 300px; max-height: 400px;
+    background-image: url('../../assets/marbles_timer/jar.png');
+    background-size: contain; background-repeat: no-repeat;
+    background-position: center; z-index: 10;
+    pointer-events: none;
+}
+.marble {
+    position: absolute; background-size: cover; border-radius: 50%;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+.marble.removing { transform: scale(0) !important; opacity: 0; }
+
+/* Shark Chase Theme */
+.shark-scene {
+    width: 100%; height: 100%;
+    background-color: #00bfff;
+    position: relative; overflow: hidden;
+}
+.shark-water {
+    width: 100%; height: 60%;
+    position: absolute; bottom: -10%; left: 0;
+    background: url('../../assets/shark_timer/water.png') repeat-x;
+    background-size: auto 100%;
+    animation: wave-move 10s linear infinite, water-wave 1.8s ease-in-out infinite;
+    z-index: 2;
+}
+@keyframes wave-move { from { background-position-x: 0; } to { background-position-x: 500px; } }
+@keyframes water-wave {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+.shark-swimmer, .shark { transform: scale(0.6); transform-origin: center bottom; }
+.tool-card.fullscreen-mode .shark-swimmer, .tool-card.fullscreen-mode .shark { transform: scale(1); }
+.shark-swimmer {
+    width: 150px; height: 75px; position: absolute; bottom: 30%;
+    background: url('../../assets/shark_timer/swimmer-sprite.png') no-repeat;
+    background-size: 300px 75px;
+    animation: swimmer-swim 1s steps(2) infinite, swimmer-bob 2.5s ease-in-out infinite;
+    transition: left 1s linear; z-index: 1;
+}
+@keyframes swimmer-swim { to { background-position-x: -300px; } }
+@keyframes swimmer-bob {
+    0% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    100% { transform: translateX(-4px); }
+}
+.shark {
+    width: 225px; height: 112px; position: absolute; bottom: 20%;
+    background: url('../../assets/shark_timer/shark-sprite.png') no-repeat;
+    background-size: 450px 112px;
+    animation: shark-chomp 0.8s steps(2) infinite, shark-lunge 1.8s ease-in-out infinite;
+    transition: left 1s linear; z-index: 1;
+}
+@keyframes shark-chomp { to { background-position-x: -450px; } }
+@keyframes shark-lunge {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+.shark-hug {
+    width: 300px; height: 220px;
+    position: absolute; bottom: 10%; left: 18%; 
+    background: url('../../assets/shark_timer/hug.png') no-repeat center;
+    background-size: contain;
+    transition: transform 0.5s, opacity 0.5s;
+    z-index: 3; overflow: visible;
+    transform: translateX(-50%) scale(0);
+    visibility: hidden; opacity: 0;
+}
+.tool-card:not(.fullscreen-mode) .shark-hug { transform-origin: center bottom; }
+.tool-card.fullscreen-mode .shark-hug { transform-origin: center center; }
+.shark-hug.visible { 
+    visibility: visible; opacity: 1;
+    transform: translateX(-50%) scale(1);
+    animation: titter 0.3s infinite;
+}
+.tool-card:not(.fullscreen-mode) .shark-hug.visible { transform: translateX(-50%) scale(0.6); }
+@keyframes titter {
+    0% { transform: translateX(-50%) scale(1) rotate(0deg); }
+    25% { transform: translateX(-51%) scale(1) rotate(-1deg); }
+    50% { transform: translateX(-50%) scale(1) rotate(0deg); }
+    75% { transform: translateX(-49%) scale(1) rotate(1deg); }
+    100% { transform: translateX(-50%) scale(1) rotate(0deg); }
+}
+.heart-particle {
+    position: absolute; width: 20px; height: 20px;
+    opacity: 0; animation: heart-float 2s ease-out forwards;
+    filter: drop-shadow(0 0 3px hotpink);
+}
+.heart-particle::before, .heart-particle::after {
+    content: ''; position: absolute;
+    top: 0; left: 10px; width: 10px; height: 16px;
+    background: hotpink; border-radius: 10px 10px 0 0;
+    transform: rotate(-45deg); transform-origin: 0 100%;
+}
+.heart-particle::after { left: 0; transform: rotate(45deg); transform-origin: 100% 100%; }
+@keyframes heart-float {
+    0% { transform: translateY(0) scale(0.5); opacity: 1; }
+    100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
+}
+
+/* Pug Snack Time Theme */
+.pug-scene {
+    width: 100%; height: 100%;
+    background-color: #fdf2e2;
+    position: relative; overflow: hidden;
+}
+#pug-dog {
+    width: 120px; height: 120px; position: absolute;
+    transition: left 0.8s ease-in-out, bottom 0.8s ease-in-out;
+    z-index: 2; background-repeat: no-repeat;
+    background-position: center; background-size: contain;
+}
+.pug-food-item {
+    width: 50px; height: 50px; position: absolute;
+    background-repeat: no-repeat; background-position: center;
+    background-size: contain;
+}
+.tool-card.fullscreen-mode #pug-dog { width: 180px; height: 180px; }
+.tool-card.fullscreen-mode .pug-food-item { width: 80px; height: 80px; }
+
+/* Mobile Responsive Fixes for Timer */
+@media (max-width: 768px) {
+    .tool-card.fullscreen-mode .timer-layout-container.side-by-side-theme-active {
+        flex-direction: column;
+        padding: 1em;
+        gap: 1em;
+    }
+    .tool-card.fullscreen-mode .side-by-side-theme-active .timer-controls-panel {
+        flex-shrink: 0;
+        margin-bottom: 0.5em;
+        width: 100%; /* Override fixed width on mobile */
+    }
+    .tool-card.fullscreen-mode .side-by-side-theme-active .timer-visual-container {
+        flex-grow: 1;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+    }
+    
+    .tool-card.fullscreen-mode #timer-display {
+        font-size: 5em;
+        margin: 0.1em 0;
+    }
+
+    .tool-card.fullscreen-mode .side-by-side-theme-active .preset-timers {
+        padding: 0; /* Remove padding on mobile */
+    }
+
+    .tool-card.fullscreen-mode #pug-dog {
+        width: 120px;
+        height: 120px;
+    }
+    .tool-card.fullscreen-mode .pug-food-item {
+        width: 50px;
+        height: 50px;
+    }
+}
