@@ -1,0 +1,257 @@
+Sound File List & Implementation Guide
+Here is the list of unique words/phrases you would need to record. You would save them as .mp3 or .wav files. I've used the cleaned text that your current code generates. There are 218 unique recordings needed.
+Action 1: Record these sound files:
+(List of 218 alphabetized sound files)
+A is for apple.mp3
+about.mp3
+an.mp3
+and.mp3
+at.mp3
+B is for ball.mp3
+bag.mp3
+bang.mp3
+bath.mp3
+bed.mp3
+beep.mp3
+bell.mp3
+bike.mp3
+black.mp3
+blot.mp3
+boat.mp3
+book.mp3
+box.mp3
+boy.mp3
+brag.mp3
+brick.mp3
+burn.mp3
+buzz.mp3
+C is for cat.mp3
+cage.mp3
+cake.mp3
+can.mp3
+cap.mp3
+card.mp3
+cell.mp3
+chew.mp3
+chin.mp3
+chip.mp3
+chop.mp3
+city.mp3
+clam.mp3
+clap.mp3
+clip.mp3
+clock.mp3
+cloud.mp3
+coat.mp3
+comb.mp3
+cot.mp3
+crab.mp3
+cried.mp3
+crop.mp3
+cup.mp3
+cute.mp3
+D is for dog.mp3
+dad.mp3
+day.mp3
+dig.mp3
+dog.mp3
+dough.mp3
+draw.mp3
+dress.mp3
+drip.mp3
+drop.mp3
+drum.mp3
+duck.mp3
+E is for egg.mp3
+F is for fish.mp3
+face.mp3
+fan.mp3
+farm.mp3
+feet.mp3
+fill.mp3
+fish.mp3
+flag.mp3
+flat.mp3
+flew.mp3
+food.mp3
+foot.mp3
+fork.mp3
+from.mp3
+frog.mp3
+fun.mp3
+G is for goat.mp3
+game.mp3
+gem.mp3
+glad.mp3
+glass.mp3
+goat.mp3
+got.mp3
+green.mp3
+grin.mp3
+H is for hand.mp3
+hat.mp3
+haunt.mp3
+head.mp3
+hen.mp3
+high.mp3
+hill.mp3
+home.mp3
+hope.mp3
+horn.mp3
+house.mp3
+huge.mp3
+hurt.mp3
+I is for igloo.mp3
+ice.mp3
+in.mp3
+is.mp3
+it.mp3
+J is for juice.mp3
+jam.mp3
+jet.mp3
+jog.mp3
+June.mp3
+K is for key.mp3
+keep.mp3
+kick.mp3
+kid.mp3
+kiss.mp3
+knife.mp3
+knock.mp3
+know.mp3
+knee.mp3
+L is for lion.mp3
+lamb.mp3
+leg.mp3
+let.mp3
+light.mp3
+like.mp3
+look.mp3
+M is for monkey.mp3
+magic.mp3
+make.mp3
+man.mp3
+map.mp3
+mess.mp3
+miss.mp3
+moon.mp3
+mop.mp3
+mouse.mp3
+N is for nose.mp3
+name.mp3
+nap.mp3
+net.mp3
+new.mp3
+nice.mp3
+night.mp3
+nine.mp3
+note.mp3
+O is for octopus.mp3
+on.mp3
+out.mp3
+P is for pig.mp3
+page.mp3
+pain.mp3
+pan.mp3
+park.mp3
+pass.mp3
+pat.mp3
+paw.mp3
+pen.mp3
+pick.mp3
+pie.mp3
+pin.mp3
+play.mp3
+plug.mp3
+plum.mp3
+pool.mp3
+pot.mp3
+pram.mp3
+Q is for queen.mp3
+R is for ring.mp3
+race.mp3
+rain.mp3
+rat.mp3
+red.mp3
+rich.mp3
+right.mp3
+ring.mp3
+road.mp3
+rock.mp3
+rose.mp3
+rule.mp3
+run.mp3
+S is for sun.mp3
+sail.mp3
+sat.mp3
+sauce.mp3
+say.mp3
+scan.mp3
+screw.mp3
+sea.mp3
+see.mp3
+sharp.mp3
+ship.mp3
+shop.mp3
+short.mp3
+shout.mp3
+sing.mp3
+sip.mp3
+sit.mp3
+six.mp3
+skin.mp3
+skip.mp3
+sled.mp3
+slip.mp3
+smell.mp3
+snail.mp3
+snip.mp3
+sock.mp3
+song.mp3
+sound.mp3
+spin.mp3
+splash.mp3
+spot.mp3
+stage.mp3
+stamp.mp3
+stem.mp3
+stop.mp3
+straw.mp3
+surf.mp3
+swim.mp3
+swing.mp3
+T is for tin.mp3
+tap.mp3
+tea.mp3
+though.mp3
+thumb.mp3
+tick-tock.mp3
+tie.mp3
+time.mp3
+tin.mp3
+tip.mp3
+toy.mp3
+trap.mp3
+trip.mp3
+U is for umbrella.mp3
+V is for violin.mp3
+van.mp3
+vet.mp3
+W is for watch.mp3
+wait.mp3
+web.mp3
+week.mp3
+wet.mp3
+wing.mp3
+with.mp3
+wrap.mp3
+write.mp3
+wrist.mp3
+wrong.mp3
+X is for box.mp3
+Y is for yo-yo.mp3
+yawn.mp3
+yes.mp3
+yet.mp3
+Z is for zebra.mp3
+zip.mp3
